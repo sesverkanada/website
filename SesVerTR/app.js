@@ -86,6 +86,7 @@ function MyStepper({ step }) {
 }
 
 function App() {
+  const [finished, setfinished] = useState(false);
   const [step, setStep] = useState(1);
   const [email, setemail] = useState("");
   const [statu, setstatu] = useState("");
@@ -313,6 +314,7 @@ function App() {
     work_others,
   ]);
 
+  const [volunteer_details, setvolunteer_details] = useState(false);
   const [volunteer, setvolunteer] = useState(false);
   const [sponsor, setsponsor] = useState(false);
 
@@ -324,6 +326,30 @@ function App() {
   const [assist_children, setassist_children] = useState(false);
   const [tech_support, settech_support] = useState(false);
   const [val_others, setval_others] = useState(false);
+
+  useEffect(() => {
+    let res = "";
+    if (organizing) res += "Etkinlik düzenlemek veya yürütmek, ";
+    if (mentorship) res += "kademik veya mesleki mentorluk, ";
+    if (lang_support) res += "Çeviri veya dil desteği sağlamak, ";
+    if (delivery) res += "Ulaşım veya teslimat desteği, ";
+    if (comm_support) res += "İdari veya iletişim desteği, ";
+    if (assist_children)
+      res += "Çocuklar için yapılan etkinliklerde yardımcı olmak, ";
+    if (tech_support)
+      res += "Teknik destek - cihaz kurulumu, teknoloji yardımı vb., ";
+    if (val_others) res += "Diğer ";
+    setvolunteer_details(res);
+  }, [
+    organizing,
+    mentorship,
+    lang_support,
+    delivery,
+    comm_support,
+    assist_children,
+    tech_support,
+    val_others,
+  ]);
 
   const stepBack = () => {
     if (step === 1) return;
@@ -418,28 +444,33 @@ function App() {
         statu,
         duration,
         age,
+        gender,
+        gender_extra,
         languages,
-        other_languages,
         edu,
+        edu_extra,
+        canada_edus,
         work,
         occupation,
+        occupation_others,
         city,
+        city_extra,
+        marital,
+        marital_extra,
+        child,
+        organization,
         volunteer,
         sponsor,
-        organizing,
-        mentorship,
-        lang_support,
-        delivery,
-        comm_support,
-        assist_children,
-        tech_support,
-        val_others,
+        volunteer_details,
+        expectation,
+        comment,
         get_email,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setfinished(true);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -448,704 +479,746 @@ function App() {
 
   return (
     <div className="bg-white border rounded-3 p-4">
-      <MyStepper step={step} />
+      <div className="text-center mb-3">
+        <a href="index.html">
+          <img src="images/logo.png" width="150" alt="" />
+        </a>
+      </div>
 
-      {step === 1 && (
+      {finished ? (
+        <div className="text-center h3 py-5">
+          <strong>Teşekkürler, kaydınız başarı ile kaydedilmiştir.</strong>
+        </div>
+      ) : (
         <>
-          <div className="text-center h3">
-            <strong>Hoşgeldiniz</strong>
-          </div>
-          <div className="text-center">
-            Lütfen aşağıdaki soruları elinizden geldiğince doğru bir şekilde
-            yanıtlayınız. Katılımınız tamamen gönüllülük esaslıdır.
-          </div>
+          <MyStepper step={step} />
 
-          <div className="bg-body-secondary p-4 mt-4 rounded-3">
-            <div>
-              Ses Ver Kanada kayıt formuna hoşgeldiniz! Bu ankete zaman ayırıp
-              katıldığınız için çok teşekkür ederiz. Amacımız hep birlikte daha
-              güçlü, daha bağlı bir topluluk nasıl kurabiliriz, bunu keşfetmek.
-            </div>
-            <div className="mt-3">
-              Bu ankete katılarak, verdiğiniz bilgilerin yalnızca Ses Ver
-              Kanada'yı anlamak ve desteklemek amacıyla kullanılacağını kabul
-              etmiş olursunuz. Verileriniz gizli tutulacak ve belirtilen amaçlar
-              dışında paylaşılmayacaktır.
-            </div>
-          </div>
-        </>
-      )}
-
-      {step === 2 && (
-        <>
-          <div className="text-center h3">
-            <strong>Kişisel Bilgiler</strong>
-          </div>
-          <div className="text-center">Temel bilgiler</div>
-
-          <div className="mt-4 mb-1">
-            <strong>E-posta adresiniz *</strong>
-          </div>
-          <input
-            type="text"
-            value={email}
-            className="form-control h-auto py-2 px-3 mb-2"
-            placeholder="your-email@example.com"
-            onChange={(e) => setemail(e.target.value)}
-          />
-
-          <div className="mt-3 mb-1">
-            <strong>Kanada'daki statünüz nedir? *</strong>
-          </div>
-
-          <select
-            className="form-select h-auto py-2 px-3 mb-2"
-            value={statu}
-            onChange={(e) => setstatu(e.target.value)}
-          >
-            {status.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-
-          <div className="mt-3 mb-1">
-            <strong>Kanada'da ne kadar süredir bulunuyorsunuz? *</strong>
-          </div>
-
-          <select
-            className="form-select h-auto py-2 px-3 mb-2"
-            value={duration}
-            onChange={(e) => setduration(e.target.value)}
-          >
-            {durations.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-        </>
-      )}
-
-      {step === 3 && (
-        <>
-          <div className="text-center h3">
-            <strong>Geçmiş</strong>
-          </div>
-          <div className="text-center">Eğitim ve iş</div>
-
-          <div className="d-flex ">
-            <div className="flex-fill me-2">
-              <div className="mt-4 mb-1">
-                <strong>Yaş *</strong>
+          {step === 1 && (
+            <>
+              <div className="text-center h3">
+                <strong>Hoşgeldiniz</strong>
               </div>
+              <div className="text-center">
+                Lütfen aşağıdaki soruları elinizden geldiğince doğru bir şekilde
+                yanıtlayınız. Katılımınız tamamen gönüllülük esaslıdır.
+              </div>
+
+              <div className="bg-body-secondary p-4 mt-4 rounded-3">
+                <div>
+                  Ses Ver Kanada kayıt formuna hoşgeldiniz! Bu ankete zaman
+                  ayırıp katıldığınız için çok teşekkür ederiz. Amacımız hep
+                  birlikte daha güçlü, daha bağlı bir topluluk nasıl
+                  kurabiliriz, bunu keşfetmek.
+                </div>
+                <div className="mt-3">
+                  Bu ankete katılarak, verdiğiniz bilgilerin yalnızca Ses Ver
+                  Kanada'yı anlamak ve desteklemek amacıyla kullanılacağını
+                  kabul etmiş olursunuz. Verileriniz gizli tutulacak ve
+                  belirtilen amaçlar dışında paylaşılmayacaktır.
+                </div>
+              </div>
+            </>
+          )}
+
+          {step === 2 && (
+            <>
+              <div className="text-center h3">
+                <strong>Kişisel Bilgiler</strong>
+              </div>
+              <div className="text-center">Temel bilgiler</div>
+
+              <div className="mt-4 mb-1">
+                <strong>E-posta adresiniz *</strong>
+              </div>
+              <input
+                type="text"
+                value={email}
+                className="form-control h-auto py-2 px-3 mb-2"
+                placeholder="your-email@example.com"
+                onChange={(e) => setemail(e.target.value)}
+              />
+
+              <div className="mt-3 mb-1">
+                <strong>Kanada'daki statünüz nedir? *</strong>
+              </div>
+
               <select
                 className="form-select h-auto py-2 px-3 mb-2"
-                value={age}
-                onChange={(e) => setage(e.target.value)}
+                value={statu}
+                onChange={(e) => setstatu(e.target.value)}
               >
-                {ages.map((item) => (
-                  <option key={item}>{item}</option>
-                ))}
-              </select>
-            </div>
-            <div className="flex-fill ms-2">
-              <div className="mt-4 mb-1">
-                <strong>Cinsiyet (isteğe bağlı)</strong>
-              </div>
-              <select
-                className="form-select h-auto py-2 px-3 mb-2"
-                value={gender}
-                onChange={(e) => setgender(e.target.value)}
-              >
-                {genders.map((item) => (
+                {status.map((item) => (
                   <option key={item}>{item}</option>
                 ))}
               </select>
 
-              {gender === "Diğer" && (
+              <div className="mt-3 mb-1">
+                <strong>Kanada'da ne kadar süredir bulunuyorsunuz? *</strong>
+              </div>
+
+              <select
+                className="form-select h-auto py-2 px-3 mb-2"
+                value={duration}
+                onChange={(e) => setduration(e.target.value)}
+              >
+                {durations.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
+            </>
+          )}
+
+          {step === 3 && (
+            <>
+              <div className="text-center h3">
+                <strong>Geçmiş</strong>
+              </div>
+              <div className="text-center">Eğitim ve iş</div>
+
+              <div className="d-flex ">
+                <div className="flex-fill me-2">
+                  <div className="mt-4 mb-1">
+                    <strong>Yaş *</strong>
+                  </div>
+                  <select
+                    className="form-select h-auto py-2 px-3 mb-2"
+                    value={age}
+                    onChange={(e) => setage(e.target.value)}
+                  >
+                    {ages.map((item) => (
+                      <option key={item}>{item}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex-fill ms-2">
+                  <div className="mt-4 mb-1">
+                    <strong>Cinsiyet (isteğe bağlı)</strong>
+                  </div>
+                  <select
+                    className="form-select h-auto py-2 px-3 mb-2"
+                    value={gender}
+                    onChange={(e) => setgender(e.target.value)}
+                  >
+                    {genders.map((item) => (
+                      <option key={item}>{item}</option>
+                    ))}
+                  </select>
+
+                  {gender === "Diğer" && (
+                    <input
+                      type="text"
+                      className="form-control h-auto py-2 px-3 mb-2"
+                      placeholder="Lütfen belirtiniz"
+                      value={gender_extra}
+                      onChange={(e) => setgender_extra(e.target.value)}
+                    />
+                  )}
+                </div>
+              </div>
+
+              <div className="mt-4 mb-1">
+                <strong>Konuştuğunuz diller *</strong>
+              </div>
+
+              <div className="d-flex">
+                <div className="flex-fill me-2">
+                  <div onClick={() => setturkish(!turkish)}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={turkish}
+                    />{" "}
+                    Türkçe
+                  </div>
+                  <div className="mt-1" onClick={() => setfrench(!french)}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={french}
+                    />{" "}
+                    Fransızca
+                  </div>
+                  <div className="mt-1" onClick={() => setgerman(!german)}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={german}
+                    />{" "}
+                    Almanca
+                  </div>
+                  <div className="mt-1" onClick={() => setrussian(!russian)}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={russian}
+                    />{" "}
+                    Rusça
+                  </div>
+                </div>
+                <div className="flex-fill ms-2 ">
+                  <div onClick={() => setenglish(!english)}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={english}
+                    />{" "}
+                    İngilizce
+                  </div>
+                  <div className="mt-1" onClick={() => setspanish(!spanish)}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={spanish}
+                    />{" "}
+                    İspanyolca
+                  </div>
+                  <div className="mt-1" onClick={() => setarabic(!arabic)}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={arabic}
+                    />{" "}
+                    Arapça
+                  </div>
+                  <div className="mt-1" onClick={() => setchinese(!chinese)}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={chinese}
+                    />{" "}
+                    Çince
+                  </div>
+                </div>
+              </div>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  value={other_languages}
+                  className="form-control h-auto py-2 px-3 mb-2"
+                  placeholder="Diğer diller"
+                  onChange={(e) => setother_languages(e.target.value)}
+                />
+              </div>
+
+              <div className="mt-4 mb-1">
+                <strong>Eğitim durumunuz *</strong>
+              </div>
+
+              <select
+                className="form-select h-auto py-2 px-3 mb-2"
+                value={edu}
+                onChange={(e) => setedu(e.target.value)}
+              >
+                {edus.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
+
+              {edu === "Diğer" && (
                 <input
                   type="text"
                   className="form-control h-auto py-2 px-3 mb-2"
                   placeholder="Lütfen belirtiniz"
-                  value={gender_extra}
-                  onChange={(e) => setgender_extra(e.target.value)}
+                  value={edu_extra}
+                  onChange={(e) => setedu_extra(e.target.value)}
                 />
               )}
-            </div>
-          </div>
 
-          <div className="mt-4 mb-1">
-            <strong>Konuştuğunuz diller *</strong>
-          </div>
-
-          <div className="d-flex">
-            <div className="flex-fill me-2">
-              <div onClick={() => setturkish(!turkish)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={turkish}
-                />{" "}
-                Türkçe
-              </div>
-              <div className="mt-1" onClick={() => setfrench(!french)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={french}
-                />{" "}
-                Fransızca
-              </div>
-              <div className="mt-1" onClick={() => setgerman(!german)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={german}
-                />{" "}
-                Almanca
-              </div>
-              <div className="mt-1" onClick={() => setrussian(!russian)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={russian}
-                />{" "}
-                Rusça
-              </div>
-            </div>
-            <div className="flex-fill ms-2 ">
-              <div onClick={() => setenglish(!english)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={english}
-                />{" "}
-                İngilizce
-              </div>
-              <div className="mt-1" onClick={() => setspanish(!spanish)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={spanish}
-                />{" "}
-                İspanyolca
-              </div>
-              <div className="mt-1" onClick={() => setarabic(!arabic)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={arabic}
-                />{" "}
-                Arapça
-              </div>
-              <div className="mt-1" onClick={() => setchinese(!chinese)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={chinese}
-                />{" "}
-                Çince
-              </div>
-            </div>
-          </div>
-          <div className="mt-2">
-            <input
-              type="text"
-              value={other_languages}
-              className="form-control h-auto py-2 px-3 mb-2"
-              placeholder="Diğer diller"
-              onChange={(e) => setother_languages(e.target.value)}
-            />
-          </div>
-
-          <div className="mt-4 mb-1">
-            <strong>Eğitim durumunuz *</strong>
-          </div>
-
-          <select
-            className="form-select h-auto py-2 px-3 mb-2"
-            value={edu}
-            onChange={(e) => setedu(e.target.value)}
-          >
-            {edus.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-
-          {edu === "Diğer" && (
-            <input
-              type="text"
-              className="form-control h-auto py-2 px-3 mb-2"
-              placeholder="Lütfen belirtiniz"
-              value={edu_extra}
-              onChange={(e) => setedu_extra(e.target.value)}
-            />
-          )}
-
-          <div className="mt-4 mb-1">
-            <strong>Kanada'da aldığınız eğitimler (isteğe bağlı)</strong>
-          </div>
-
-          <div className="d-flex">
-            <div className="flex-fill me-2">
-              <div className="mt-1" onClick={() => setedu_none(!edu_none)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={edu_none}
-                />{" "}
-                Almadım
-              </div>
-
-              <div className="mt-1" onClick={() => setedu_canada(!edu_canada)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={edu_canada}
-                />{" "}
-                Eğitimimin tamamı Kanada'da geçti
-              </div>
-
-              <div className="mt-1" onClick={() => setedu_lise(!edu_lise)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={edu_lise}
-                />{" "}
-                Lise
-              </div>
-
-              <div
-                className="mt-1"
-                onClick={() => setedu_yuksekokul(!edu_yuksekokul)}
-              >
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={edu_yuksekokul}
-                />{" "}
-                Meslek Yüksekokulu
-              </div>
-            </div>
-            <div className="flex-fill ms-2">
-              <div className="mt-1" onClick={() => setedu_lisans(!edu_lisans)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={edu_lisans}
-                />{" "}
-                Lisans
-              </div>
-
-              <div
-                className="mt-1"
-                onClick={() => setedu_ylisans(!edu_ylisans)}
-              >
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={edu_ylisans}
-                />{" "}
-                Yüksek lisans
-              </div>
-
-              <div
-                className="mt-1"
-                onClick={() => setedu_doktora(!edu_doktora)}
-              >
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={edu_doktora}
-                />{" "}
-                Doktora
-              </div>
-
-              <div className="mt-1" onClick={() => setedu_others(!edu_others)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={edu_others}
-                />{" "}
-                Diğer
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-4 mb-1">
-            <strong>Çalışma durumunuz *</strong>
-          </div>
-
-          <div className="d-flex">
-            <div className="flex-fill me-2">
-              <div className="mt-1" onClick={() => setwork_full(!work_full)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={work_full}
-                />{" "}
-                Tam zamanlı
-              </div>
-
-              <div className="mt-1" onClick={() => setwork_part(!work_part)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={work_part}
-                />{" "}
-                Yarı zamanlı
-              </div>
-
-              <div className="mt-1" onClick={() => setwork_self(!work_self)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={work_self}
-                />{" "}
-                Kendi işimde çalışıyorum
-              </div>
-            </div>
-            <div className="flex-fill ms-2">
-              <div
-                className="mt-1"
-                onClick={() => setwork_student(!work_student)}
-              >
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={work_student}
-                />{" "}
-                Öğrenciyim
-              </div>
-
-              <div
-                className="mt-1"
-                onClick={() => setwork_unemployed(!work_unemployed)}
-              >
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={work_unemployed}
-                />{" "}
-                İşsizim
-              </div>
-
-              <div
-                className="mt-1"
-                onClick={() => setwork_retired(!work_retired)}
-              >
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={work_retired}
-                />{" "}
-                Emekliyim
-              </div>
-            </div>
-          </div>
-          <div className="mt-2">
-            <input
-              type="text"
-              value={work_others}
-              className="form-control h-auto py-2 px-3 mb-2"
-              placeholder="Diğer"
-              onChange={(e) => setwork_others(e.target.value)}
-            />
-          </div>
-        </>
-      )}
-
-      {step === 4 && (
-        <>
-          <div className="text-center h3">
-            <strong>Topluluk</strong>
-          </div>
-          <div className="text-center">Katılım ve destek</div>
-
-          <div className="mt-4 mb-1">
-            <strong>Mesleğiniz *</strong>
-          </div>
-          <select
-            className="form-select h-auto py-2 px-3 mb-2"
-            value={occupation}
-            onChange={(e) => setoccupation(e.target.value)}
-          >
-            {occupations.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-
-          {occupation === "Diğer" && (
-            <div className="mt-2">
-              <input
-                type="text"
-                value={occupation_others}
-                className="form-control h-auto py-2 px-3 mb-2"
-                placeholder="Lütfen belirtiniz"
-                onChange={(e) => setoccupation_others(e.target.value)}
-              />
-            </div>
-          )}
-
-          <div className="mt-4 mb-1">
-            <strong>Şehir *</strong>
-          </div>
-          <select
-            className="form-select h-auto py-2 px-3 mb-2"
-            value={city}
-            onChange={(e) => setcity(e.target.value)}
-          >
-            {cities.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-
-          {city === "Diğer" && (
-            <div className="mt-2">
-              <input
-                type="text"
-                value={city_extra}
-                className="form-control h-auto py-2 px-3 mb-2"
-                placeholder="Lütfen belirtiniz"
-                onChange={(e) => setcity_extra(e.target.value)}
-              />
-            </div>
-          )}
-
-          <div className="mt-4 mb-1">
-            <strong>Medeni durumunuz (isteğe bağlı)</strong>
-          </div>
-          <select
-            className="form-select h-auto py-2 px-3 mb-2"
-            value={marital}
-            onChange={(e) => setmarital(e.target.value)}
-          >
-            {maritals.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-
-          {marital === "Diğer" && (
-            <div className="mt-2">
-              <input
-                type="text"
-                value={marital_extra}
-                className="form-control h-auto py-2 px-3 mb-2"
-                placeholder="Lütfen belirtiniz"
-                onChange={(e) => setmarital_extra(e.target.value)}
-              />
-            </div>
-          )}
-
-          <div className="mt-4 mb-1">
-            <strong>Çocuğunuz var mı? (isteğe bağlı)</strong>
-          </div>
-          <select
-            className="form-select h-auto py-2 px-3 mb-2"
-            value={child}
-            onChange={(e) => setchild(e.target.value)}
-          >
-            {childs.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-
-          <div className="mt-4 mb-1">
-            <strong>
-              Herhangi bir topluluk organizasyonunda ya da sosyal grupta aktif
-              olarak yer alıyor musunuz? (isteğe bağlı)
-            </strong>
-          </div>
-
-          <textarea
-            className="form-control h-auto py-2 px-3 mb-2"
-            value={organization}
-            onChange={(e) => setorganization(e.target.value)}
-            placeholder="Lütfen açıklayınız"
-          ></textarea>
-
-          <div className="mt-4 mb-1">
-            <strong>Gönüllü olma veya sponsor olma tercihiniz *</strong>
-          </div>
-
-          <div className="mt-1" onClick={() => setvolunteer(!volunteer)}>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              checked={volunteer}
-            />{" "}
-            Gönüllü olmak isterim
-          </div>
-          <div className="mt-1" onClick={() => setsponsor(!sponsor)}>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              checked={sponsor}
-            />{" "}
-            Sponsor olmak isterim
-          </div>
-
-          {volunteer && (
-            <>
               <div className="mt-4 mb-1">
-                <strong>
-                  Gönüllü olarak hangi destekleri sağlayabilirsiniz? *
-                </strong>
+                <strong>Kanada'da aldığınız eğitimler (isteğe bağlı)</strong>
               </div>
 
-              <div className="mt-1" onClick={() => setorganizing(!organizing)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={organizing}
-                />{" "}
-                Etkinlik düzenlemek veya yürütmek
+              <div className="d-flex">
+                <div className="flex-fill me-2">
+                  <div className="mt-1" onClick={() => setedu_none(!edu_none)}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={edu_none}
+                    />{" "}
+                    Almadım
+                  </div>
+
+                  <div
+                    className="mt-1"
+                    onClick={() => setedu_canada(!edu_canada)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={edu_canada}
+                    />{" "}
+                    Eğitimimin tamamı Kanada'da geçti
+                  </div>
+
+                  <div className="mt-1" onClick={() => setedu_lise(!edu_lise)}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={edu_lise}
+                    />{" "}
+                    Lise
+                  </div>
+
+                  <div
+                    className="mt-1"
+                    onClick={() => setedu_yuksekokul(!edu_yuksekokul)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={edu_yuksekokul}
+                    />{" "}
+                    Meslek Yüksekokulu
+                  </div>
+                </div>
+                <div className="flex-fill ms-2">
+                  <div
+                    className="mt-1"
+                    onClick={() => setedu_lisans(!edu_lisans)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={edu_lisans}
+                    />{" "}
+                    Lisans
+                  </div>
+
+                  <div
+                    className="mt-1"
+                    onClick={() => setedu_ylisans(!edu_ylisans)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={edu_ylisans}
+                    />{" "}
+                    Yüksek lisans
+                  </div>
+
+                  <div
+                    className="mt-1"
+                    onClick={() => setedu_doktora(!edu_doktora)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={edu_doktora}
+                    />{" "}
+                    Doktora
+                  </div>
+
+                  <div
+                    className="mt-1"
+                    onClick={() => setedu_others(!edu_others)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={edu_others}
+                    />{" "}
+                    Diğer
+                  </div>
+                </div>
               </div>
-              <div className="mt-1" onClick={() => setmentorship(!mentorship)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={mentorship}
-                />{" "}
-                Akademik veya mesleki mentorluk
+
+              <div className="mt-4 mb-1">
+                <strong>Çalışma durumunuz *</strong>
               </div>
-              <div
-                className="mt-1"
-                onClick={() => setlang_support(!lang_support)}
-              >
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={lang_support}
-                />{" "}
-                Çeviri veya dil desteği sağlamak
+
+              <div className="d-flex">
+                <div className="flex-fill me-2">
+                  <div
+                    className="mt-1"
+                    onClick={() => setwork_full(!work_full)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={work_full}
+                    />{" "}
+                    Tam zamanlı
+                  </div>
+
+                  <div
+                    className="mt-1"
+                    onClick={() => setwork_part(!work_part)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={work_part}
+                    />{" "}
+                    Yarı zamanlı
+                  </div>
+
+                  <div
+                    className="mt-1"
+                    onClick={() => setwork_self(!work_self)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={work_self}
+                    />{" "}
+                    Kendi işimde çalışıyorum
+                  </div>
+                </div>
+                <div className="flex-fill ms-2">
+                  <div
+                    className="mt-1"
+                    onClick={() => setwork_student(!work_student)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={work_student}
+                    />{" "}
+                    Öğrenciyim
+                  </div>
+
+                  <div
+                    className="mt-1"
+                    onClick={() => setwork_unemployed(!work_unemployed)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={work_unemployed}
+                    />{" "}
+                    İşsizim
+                  </div>
+
+                  <div
+                    className="mt-1"
+                    onClick={() => setwork_retired(!work_retired)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={work_retired}
+                    />{" "}
+                    Emekliyim
+                  </div>
+                </div>
               </div>
-              <div className="mt-1" onClick={() => setdelivery(!delivery)}>
+              <div className="mt-2">
                 <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={delivery}
-                />{" "}
-                Ulaşım veya teslimat desteği
-              </div>
-              <div
-                className="mt-1"
-                onClick={() => setcomm_support(!comm_support)}
-              >
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={comm_support}
-                />{" "}
-                İdari veya iletişim desteği
-              </div>
-              <div
-                className="mt-1"
-                onClick={() => setassist_children(!assist_children)}
-              >
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={assist_children}
-                />{" "}
-                Çocuklar için yapılan etkinliklerde yardımcı olmak
-              </div>
-              <div
-                className="mt-1"
-                onClick={() => settech_support(!tech_support)}
-              >
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={tech_support}
-                />{" "}
-                Teknik destek - cihaz kurulumu, teknoloji yardımı vb.
-              </div>
-              <div className="mt-1" onClick={() => setval_others(!val_others)}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={val_others}
-                />{" "}
-                Diğer
+                  type="text"
+                  value={work_others}
+                  className="form-control h-auto py-2 px-3 mb-2"
+                  placeholder="Diğer"
+                  onChange={(e) => setwork_others(e.target.value)}
+                />
               </div>
             </>
           )}
+
+          {step === 4 && (
+            <>
+              <div className="text-center h3">
+                <strong>Topluluk</strong>
+              </div>
+              <div className="text-center">Katılım ve destek</div>
+
+              <div className="mt-4 mb-1">
+                <strong>Mesleğiniz *</strong>
+              </div>
+              <select
+                className="form-select h-auto py-2 px-3 mb-2"
+                value={occupation}
+                onChange={(e) => setoccupation(e.target.value)}
+              >
+                {occupations.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
+
+              {occupation === "Diğer" && (
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    value={occupation_others}
+                    className="form-control h-auto py-2 px-3 mb-2"
+                    placeholder="Lütfen belirtiniz"
+                    onChange={(e) => setoccupation_others(e.target.value)}
+                  />
+                </div>
+              )}
+
+              <div className="mt-4 mb-1">
+                <strong>Şehir *</strong>
+              </div>
+              <select
+                className="form-select h-auto py-2 px-3 mb-2"
+                value={city}
+                onChange={(e) => setcity(e.target.value)}
+              >
+                {cities.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
+
+              {city === "Diğer" && (
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    value={city_extra}
+                    className="form-control h-auto py-2 px-3 mb-2"
+                    placeholder="Lütfen belirtiniz"
+                    onChange={(e) => setcity_extra(e.target.value)}
+                  />
+                </div>
+              )}
+
+              <div className="mt-4 mb-1">
+                <strong>Medeni durumunuz (isteğe bağlı)</strong>
+              </div>
+              <select
+                className="form-select h-auto py-2 px-3 mb-2"
+                value={marital}
+                onChange={(e) => setmarital(e.target.value)}
+              >
+                {maritals.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
+
+              {marital === "Diğer" && (
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    value={marital_extra}
+                    className="form-control h-auto py-2 px-3 mb-2"
+                    placeholder="Lütfen belirtiniz"
+                    onChange={(e) => setmarital_extra(e.target.value)}
+                  />
+                </div>
+              )}
+
+              <div className="mt-4 mb-1">
+                <strong>Çocuğunuz var mı? (isteğe bağlı)</strong>
+              </div>
+              <select
+                className="form-select h-auto py-2 px-3 mb-2"
+                value={child}
+                onChange={(e) => setchild(e.target.value)}
+              >
+                {childs.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
+
+              <div className="mt-4 mb-1">
+                <strong>
+                  Herhangi bir topluluk organizasyonunda ya da sosyal grupta
+                  aktif olarak yer alıyor musunuz? (isteğe bağlı)
+                </strong>
+              </div>
+
+              <textarea
+                className="form-control h-auto py-2 px-3 mb-2"
+                value={organization}
+                onChange={(e) => setorganization(e.target.value)}
+                placeholder="Lütfen açıklayınız"
+              ></textarea>
+
+              <div className="mt-4 mb-1">
+                <strong>Gönüllü olma veya sponsor olma tercihiniz *</strong>
+              </div>
+
+              <div className="mt-1" onClick={() => setvolunteer(!volunteer)}>
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={volunteer}
+                />{" "}
+                Gönüllü olmak isterim
+              </div>
+              <div className="mt-1" onClick={() => setsponsor(!sponsor)}>
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={sponsor}
+                />{" "}
+                Sponsor olmak isterim
+              </div>
+
+              {volunteer && (
+                <>
+                  <div className="mt-4 mb-1">
+                    <strong>
+                      Gönüllü olarak hangi destekleri sağlayabilirsiniz? *
+                    </strong>
+                  </div>
+
+                  <div
+                    className="mt-1"
+                    onClick={() => setorganizing(!organizing)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={organizing}
+                    />{" "}
+                    Etkinlik düzenlemek veya yürütmek
+                  </div>
+                  <div
+                    className="mt-1"
+                    onClick={() => setmentorship(!mentorship)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={mentorship}
+                    />{" "}
+                    Akademik veya mesleki mentorluk
+                  </div>
+                  <div
+                    className="mt-1"
+                    onClick={() => setlang_support(!lang_support)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={lang_support}
+                    />{" "}
+                    Çeviri veya dil desteği sağlamak
+                  </div>
+                  <div className="mt-1" onClick={() => setdelivery(!delivery)}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={delivery}
+                    />{" "}
+                    Ulaşım veya teslimat desteği
+                  </div>
+                  <div
+                    className="mt-1"
+                    onClick={() => setcomm_support(!comm_support)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={comm_support}
+                    />{" "}
+                    İdari veya iletişim desteği
+                  </div>
+                  <div
+                    className="mt-1"
+                    onClick={() => setassist_children(!assist_children)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={assist_children}
+                    />{" "}
+                    Çocuklar için yapılan etkinliklerde yardımcı olmak
+                  </div>
+                  <div
+                    className="mt-1"
+                    onClick={() => settech_support(!tech_support)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={tech_support}
+                    />{" "}
+                    Teknik destek - cihaz kurulumu, teknoloji yardımı vb.
+                  </div>
+                  <div
+                    className="mt-1"
+                    onClick={() => setval_others(!val_others)}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={val_others}
+                    />{" "}
+                    Diğer
+                  </div>
+                </>
+              )}
+            </>
+          )}
+
+          {step === 5 && (
+            <>
+              <div className="text-center h3">
+                <strong>Tamamla</strong>
+              </div>
+              <div className="text-center">Son detaylar</div>
+
+              <div className="mt-4 mb-1">
+                <strong>
+                  Gönüllüler tarafından kurulan bir Türk topluluğundan
+                  beklentileriniz nelerdir? (isteğe bağlı)
+                </strong>
+              </div>
+
+              <textarea
+                className="form-control h-auto py-2 px-3 mb-2"
+                value={expectation}
+                onChange={(e) => setexpectation(e.target.value)}
+                placeholder="Düşüncelerinizi paylaşın"
+              ></textarea>
+
+              <div className="mt-4 mb-1">
+                <strong>
+                  Topluluğu güçlendirmek için başka yorumlarınız veya
+                  önerileriniz var mı? (isteğe bağlı)
+                </strong>
+              </div>
+
+              <textarea
+                className="form-control h-auto py-2 px-3 mb-2"
+                value={comment}
+                onChange={(e) => setcomment(e.target.value)}
+                placeholder="Düşüncelerinizi paylaşın"
+              ></textarea>
+
+              <div className="mt-4 mb-1">
+                <strong>
+                  E-posta yoluyla sizinle iletişime geçmemize izin veriyor
+                  musunuz? *
+                </strong>
+              </div>
+
+              <select
+                className="form-select h-auto py-2 px-3 mb-2"
+                value={get_email}
+                onChange={(e) => setget_email(e.target.value)}
+              >
+                {get_emails.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
+            </>
+          )}
+
+          <div className="d-flex justify-content-between mt-5 ">
+            <button
+              type="button"
+              className={
+                step === 1 ? "btn btn-light btn-lg" : "btn btn-primary btn-lg"
+              }
+              onClick={stepBack}
+            >
+              <i className="bi bi-arrow-left me-1"></i>
+              Önceki
+            </button>
+            <button
+              type="button"
+              className={"btn btn-primary btn-lg"}
+              onClick={stepForward}
+            >
+              {step === 5 ? "Kaydı Tamamla ve Kaydet" : "İleri"}
+              {step !== 5 && <i className="bi bi-arrow-right ms-1"></i>}
+            </button>
+          </div>
         </>
       )}
-
-      {step === 5 && (
-        <>
-          <div className="text-center h3">
-            <strong>Tamamla</strong>
-          </div>
-          <div className="text-center">Son detaylar</div>
-
-          <div className="mt-4 mb-1">
-            <strong>
-              Gönüllüler tarafından kurulan bir Türk topluluğundan
-              beklentileriniz nelerdir? (isteğe bağlı)
-            </strong>
-          </div>
-
-          <textarea
-            className="form-control h-auto py-2 px-3 mb-2"
-            value={expectation}
-            onChange={(e) => setexpectation(e.target.value)}
-            placeholder="Düşüncelerinizi paylaşın"
-          ></textarea>
-
-          <div className="mt-4 mb-1">
-            <strong>
-              Topluluğu güçlendirmek için başka yorumlarınız veya önerileriniz
-              var mı? (isteğe bağlı)
-            </strong>
-          </div>
-
-          <textarea
-            className="form-control h-auto py-2 px-3 mb-2"
-            value={comment}
-            onChange={(e) => setcomment(e.target.value)}
-            placeholder="Düşüncelerinizi paylaşın"
-          ></textarea>
-
-          <div className="mt-4 mb-1">
-            <strong>
-              E-posta yoluyla sizinle iletişime geçmemize izin veriyor musunuz?
-              *
-            </strong>
-          </div>
-
-          <select
-            className="form-select h-auto py-2 px-3 mb-2"
-            value={get_email}
-            onChange={(e) => setget_email(e.target.value)}
-          >
-            {get_emails.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-        </>
-      )}
-
-      <div className="d-flex justify-content-between mt-5 ">
-        <button
-          type="button"
-          className={
-            step === 1 ? "btn btn-light btn-lg" : "btn btn-primary btn-lg"
-          }
-          onClick={stepBack}
-        >
-          <i className="bi bi-arrow-left me-1"></i>
-          Önceki
-        </button>
-        <button
-          type="button"
-          className={"btn btn-primary btn-lg"}
-          onClick={stepForward}
-        >
-          {step === 5 ? "Kaydı Tamamla ve Kaydet" : "İleri"}
-          {step !== 5 && <i className="bi bi-arrow-right ms-1"></i>}
-        </button>
-      </div>
     </div>
   );
 }

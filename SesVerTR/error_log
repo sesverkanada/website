@@ -121,3 +121,94 @@ Stack trace:
 #0 /home/lfltvc16/public_html/test2/form_save.php(12): mysqli->__construct()
 #1 {main}
   thrown in /home/lfltvc16/public_html/test2/form_save.php on line 12
+[01-Aug-2025 14:58:54 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #2 cannot be passed by reference in /home/lfltvc16/public_html/test2/form_save.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 15
+[01-Aug-2025 14:59:20 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home/lfltvc16/public_html/test2/form_save.php:15
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(15): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 15
+[01-Aug-2025 14:59:43 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #2 cannot be passed by reference in /home/lfltvc16/public_html/test2/form_save.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 15
+[01-Aug-2025 15:00:06 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Column count doesn't match value count at row 1 in /home/lfltvc16/public_html/test2/form_save.php:14
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(14): mysqli->prepare()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 14
+[01-Aug-2025 15:00:20 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #2 cannot be passed by reference in /home/lfltvc16/public_html/test2/form_save.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 15
+[01-Aug-2025 15:02:43 UTC] PHP Warning:  Undefined variable $stmt in /home/lfltvc16/public_html/test2/form_save.php on line 21
+[01-Aug-2025 15:02:43 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on null in /home/lfltvc16/public_html/test2/form_save.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 21
+[01-Aug-2025 15:04:23 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com)' at line 1 in /home/lfltvc16/public_html/test2/form_save.php:21
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(21): mysqli->query()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 21
+[01-Aug-2025 15:04:31 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com)' at line 1 in /home/lfltvc16/public_html/test2/form_save.php:21
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(21): mysqli->query()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 21
+[01-Aug-2025 16:04:01 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'da geçti, ', 'Eğitim ', 
+'Brampton ', 'Bekar ', 'Yetişkin çocuğum var',...' at line 3 in /home/lfltvc16/public_html/test2/form_save.php:75
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(75): mysqli->query()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 75
+[01-Aug-2025 16:04:24 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'da geçti, ', 'Eğitim ', 
+'Brampton ', 'Bekar ', 'Yetişkin çocuğum var',...' at line 3 in /home/lfltvc16/public_html/test2/form_save.php:75
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(75): mysqli->query()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 75
+[01-Aug-2025 16:05:35 UTC] PHP Fatal error:  Uncaught ArgumentCountError: addcslashes() expects exactly 2 arguments, 1 given in /home/lfltvc16/public_html/test2/form_save.php:27
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(27): addcslashes()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 27
+[01-Aug-2025 16:05:56 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'da geçti, ', 'Eğitim ', 
+'Brampton ', 'Bekar ', 'Yetişkin çocuğum var',...' at line 3 in /home/lfltvc16/public_html/test2/form_save.php:75
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(75): mysqli->query()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 75
+[01-Aug-2025 16:06:53 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'da geçti, ', 'Eğitim ', 
+'Brampton ', 'Bekar ', 'Yetişkin çocuğum var',...' at line 3 in /home/lfltvc16/public_html/test2/form_save.php:75
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(75): mysqli->query()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 75
+[01-Aug-2025 16:12:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'dasdasdasd', 'Evet', 'Evet', 'Çeviri veya dil desteği sağlamak, ', 'das da...' at line 4 in /home/lfltvc16/public_html/test2/form_save.php:75
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(75): mysqli->query()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 75
+[01-Aug-2025 16:12:28 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'dasdasdasd', 'Evet', 'Evet', 'Çeviri veya dil desteği sağlamak, ', 'das da...' at line 4 in /home/lfltvc16/public_html/test2/form_save.php:75
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(75): mysqli->query()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 75
+[01-Aug-2025 16:13:41 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'dasdasdasd', 'Evet', 'Evet', 'Çeviri veya dil desteği sağlamak, ', 'das da...' at line 4 in /home/lfltvc16/public_html/test2/form_save.php:75
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(75): mysqli->query()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 75
+[01-Aug-2025 16:14:31 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'dasdasdasd', 'Evet', 'Evet', 'Çeviri veya dil desteği sağlamak, ', 'dsadas...' at line 4 in /home/lfltvc16/public_html/test2/form_save.php:75
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(75): mysqli->query()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 75
+[01-Aug-2025 16:14:56 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'dasdasdasd', 'Evet', 'Evet', 'Çeviri veya dil desteği sağlamak, Ulaşım v...' at line 4 in /home/lfltvc16/public_html/test2/form_save.php:75
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(75): mysqli->query()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 75
