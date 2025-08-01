@@ -1,0 +1,123 @@
+[01-Aug-2025 13:37:48 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:16
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(16): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 16
+[01-Aug-2025 13:38:15 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:16
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(16): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 16
+[01-Aug-2025 13:38:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:16
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(16): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 16
+[01-Aug-2025 13:38:54 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:11
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(11): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 11
+[01-Aug-2025 13:38:57 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:11
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(11): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 11
+[01-Aug-2025 13:40:31 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:11
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(11): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 11
+[01-Aug-2025 13:41:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:11
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(11): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 11
+[01-Aug-2025 13:41:17 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:11
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(11): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 11
+[01-Aug-2025 13:41:18 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:11
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(11): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 11
+[01-Aug-2025 13:41:48 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:11
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(11): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 11
+[01-Aug-2025 13:44:30 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:11
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(11): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 11
+[01-Aug-2025 13:44:43 UTC] PHP Warning:  Undefined variable $mysqli in /home/lfltvc16/public_html/test2/form_save.php on line 20
+[01-Aug-2025 13:44:43 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/lfltvc16/public_html/test2/form_save.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 20
+[01-Aug-2025 13:45:58 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:11
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(11): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 11
+[01-Aug-2025 13:46:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:11
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(11): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 11
+[01-Aug-2025 13:47:37 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000] [1044] Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:12
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(12): PDO->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 12
+[01-Aug-2025 13:47:40 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000] [1044] Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:12
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(12): PDO->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 12
+[01-Aug-2025 13:49:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /home/lfltvc16/public_html/test2/form_save.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 10
+[01-Aug-2025 13:49:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /home/lfltvc16/public_html/test2/form_save.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 10
+[01-Aug-2025 13:50:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /home/lfltvc16/public_html/test2/form_save.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 10
+[01-Aug-2025 13:50:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /home/lfltvc16/public_html/test2/form_save.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 10
+[01-Aug-2025 13:50:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /home/lfltvc16/public_html/test2/form_save.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 10
+[01-Aug-2025 13:51:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function php_info() in /home/lfltvc16/public_html/test2/info.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/info.php on line 2
+[01-Aug-2025 13:51:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function php_info() in /home/lfltvc16/public_html/test2/info.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/lfltvc16/public_html/test2/info.php on line 2
+[01-Aug-2025 13:53:37 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:10
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(10): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 10
+[01-Aug-2025 13:53:39 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:10
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(10): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 10
+[01-Aug-2025 13:54:54 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'lfltvc16_user'@'localhost' to database 'lfltvc16_sesver' in /home/lfltvc16/public_html/test2/form_save.php:12
+Stack trace:
+#0 /home/lfltvc16/public_html/test2/form_save.php(12): mysqli->__construct()
+#1 {main}
+  thrown in /home/lfltvc16/public_html/test2/form_save.php on line 12
