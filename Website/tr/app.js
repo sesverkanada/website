@@ -434,7 +434,7 @@ function App() {
 
   const save = () => {
     console.log("kaydet");
-    fetch("/test2/form_save.php", {
+    fetch("/tr/form_save.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -487,7 +487,7 @@ function App() {
 
       {finished ? (
         <div className="text-center h3 py-5">
-          <strong>Teşekkürler, kaydınız başarı ile kaydedilmiştir.</strong>
+          <strong>Teşekkürler, kaydınız başarı ile alınmıştır.</strong>
         </div>
       ) : (
         <>

@@ -1,0 +1,17 @@
+
+RewriteEngine on
+
+RewriteOptions inherit
+RewriteCond %{HTTP_HOST} ^sesver\.ca$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.sesver\.ca$
+RewriteRule ^/?$ "https\:\/\/www\.speakup\-canada\.com\/tr\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^sesver\.org$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.sesver\.org$
+RewriteRule ^/?$ "https\:\/\/www\.speakup\-canada\.com\/tr\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^speakup\-canada\.ca$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.speakup\-canada\.ca$
+RewriteRule ^/?$ "https\:\/\/www\.speakup\-canada\.com\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^speakup\-canada\.org$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.speakup\-canada\.org$
+RewriteRule ^/?$ "https\:\/\/www\.speakup\-canada\.com\/" [R=301,L]
+

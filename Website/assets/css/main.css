@@ -2267,3 +2267,16 @@ button,
     border-top: 0;
     margin-top: 0;
     padding-top: 0; }
+
+.lang_div{
+  display: flex;
+  justify-content: space-between; /* pushes one to left, one to right */
+  align-items: center; 
+  margin-bottom: 20px;  /* optional: vertical centering */
+}
+.lang_div_left{
+	margin-right: 20px;
+}
+.lang_div_both{
+	padding-top:20px !important;
+}
